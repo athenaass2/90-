@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>90 PRA TRÊS</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    background: #f5f5f5;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    padding: 20px 40px;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+  nav a {
+    color: #000;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 600;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #000;
+    transition: width 0.3s ease;
+  }
+  nav a:hover, nav a.active {
+    color: #555;
+  }
+  nav a:hover::after, nav a.active::after {
+    width: 100%;
+  }
+  main {
+    flex-grow: 1;
+    padding: 60px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 12px;
+  }
+  p.subtitle {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 50px;
+    max-width: 480px;
+  }
+  .album-cover {
+    width: 320px;
+    height: 320px;
+    border: 8px solid #000;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    background: url('https://media.discordapp.net/attachments/1121579103817052273/1390096907694768178/Imagem_do_WhatsApp_de_2025-06-03_as_22.10.55_79c653b8.jpg?ex=68670421&is=6865b2a1&hm=acfc2a6ec3c09dc666f0043d74c067d2e8b69e60e6be3d5e444955ec8d213ec0&=&format=webp&width=641&height=641') center/cover no-repeat;
+    margin-bottom: 40px;
+  }
+  button {
+    background: transparent;
+    border: 2px solid #000;
+    color: #000;
+    font-size: 1.1rem;
+    padding: 12px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    min-width: 150px;
+  }
+  button:hover:not(:disabled) {
+    background: #000;
+    color: #f5f5f5;
+  }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  ul.list-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 100%;
+    max-width: 600px;
+  }
+  ul.list-grid li {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: default;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .timer {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-top: 20px;
+    letter-spacing: 1.5px;
+  }
+  footer {
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    border-top: 1px solid #ddd;
+  }
+  audio {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 500px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>90 PRA TRÊS</div>
+  <nav>
+    <a href="#" data-page="home" class="active">Home</a>
+    <a href="#" data-page="artistas">Artistas</a>
+    <a href="#" data-page="produtores">Produtores</a>
+    <a href="#" data-page="preSave">Pré-Save</a>
+    <a href="#" data-page="documentario">Documentário</a>
+  </nav>
+</header>
+
+<main id="content">
+  <h1>I AM SHIT TRAP</h1>
+  <p class="subtitle">O próximo álbum da gravadora 90 PRA TRÊS. Mais informações em breve.</p>
+  <div class="album-cover" aria-label="Capa do álbum I AM SHIT TRAP"></div>
+  <button id="listenBtn">Pré-Save Agora</button>
+</main>
+
+<footer>
+  © 2025 90 PRA TRÊS • Todos os direitos reservados
+</footer>
+
+<script>
+  const content = document.getElementById('content');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const artistas = [
+    {nome: 'Zezão', descricao: 'Artista principal da gravadora 90 PRA TRÊS, referência em shit trap nacional com letras impactantes e batidas pesadas.'},
+    {nome: 'Rafael', descricao: 'Vocalista e compositor que traz autenticidade e estilo único para o som da 90 PRA TRÊS.'}
+  ];
+  const produtores = [
+    {nome: 'Makita', descricao: 'Produtor experiente, responsável por criar os beats e atmosferas que definem o som da gravadora.'},
+    {nome: 'João', descricao: 'Especialista em mixagem e masterização, garantindo qualidade máxima em todas as faixas.'}
+  ];
+
+  function setActiveLink(page) {
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.page === page);
+    });
+  }
+
+  function zeroPad(num) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function loadPage(page) {
+    setActiveLink(page);
+
+    if(page === 'home'){
+      content.innerHTML = `
+        <h1>I AM SHIT TRAP</h1>
+        <p class="subtitle">O próximo álbum da gravadora 90 PRA TRÊS. Mais informações em breve.</p>
+        <div class="album-cover" aria-label="Capa do álbum I AM SHIT TRAP"></div>
+        <button id="listenBtn">Pré-Save Agora</button>
+      `;
+      document.getElementById('listenBtn').addEventListener('click', () => loadPage('preSave'));
+    }
+    else if(page === 'artistas'){
+      let html = '<h1>Artistas da 90 PRA TRÊS</h1><ul class="list-grid">';
+      artistas.forEach(a => {
+        html += `
+          <li>
+            <h2>${a.nome}</h2>
+            <p>${a.descricao}</p>
+          </li>
+        `;
+      });
+      html += '</ul>';
+      content.innerHTML = html;
+    }
+    else if(page === 'produtores'){
+      let html = '<h1>Produtores da 90 PRA TRÊS</h1><ul class="list-grid">';
+      produtores.forEach(p => {
+        html += `
+          <li>
+            <h2>${p.nome}</h2>
+            <p>${p.descricao}</p>
+          </li>
+        `;
+      });
+      html += '</ul>';
+      content.innerHTML = html;
+    }
+    else if(page === 'preSave'){
+      let storedReleaseTimestamp = localStorage.getItem('releaseTimestamp');
+      let releaseDate;
+
+      if(storedReleaseTimestamp){
+        releaseDate = new Date(parseInt(storedReleaseTimestamp));
+      } else {
+        releaseDate = new Date();
+        releaseDate.setDate(releaseDate.getDate() + 50);
+        localStorage.setItem('releaseTimestamp', releaseDate.getTime());
+      }
+
+      content.innerHTML = `
+        <h1>Pré-Save: I AM SHIT TRAP</h1>
+        <div class="album-cover" aria-label="Capa do álbum I AM SHIT TRAP"></div>
+        <p class="subtitle">Prepare-se! O lançamento oficial está chegando. Fique ligado para mais novidades.</p>
+        <div class="timer" id="timerDisplay"></div>
+        <audio controls loop>
+          <source src="https://pillowcase.su/f/564817ae749fed28774e0a879ebccdd5" type="audio/mpeg">
+          Seu navegador não suporta áudio.
+        </audio>
+        <button id="backBtn" style="margin-top:30px;">Voltar</button>
+      `;
+
+      const timerDisplay = document.getElementById('timerDisplay');
+
+      function updateTimer() {
+        const now = new Date();
+        let diff = releaseDate - now;
+
+        if (diff <= 0) {
+          timerDisplay.textContent = "O álbum já foi lançado!";
+          clearInterval(timerInterval);
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff -= minutes * (1000 * 60);
+        const seconds = Math.floor(diff / 1000);
+
+        timerDisplay.textContent = `${zeroPad(days)} Dias : ${zeroPad(hours)} Horas : ${zeroPad(minutes)} Minutos : ${zeroPad(seconds)} Segundos`;
+      }
+
+      updateTimer();
+      const timerInterval = setInterval(updateTimer, 1000);
+
+      document.getElementById('backBtn').addEventListener('click', () => {
+        clearInterval(timerInterval);
+        loadPage('home');
+      });
+    }
+    else if(page === 'documentario'){
+      content.innerHTML = `
+        <h1>3 Days at the Ranch</h1>
+        <p class="subtitle">Estamos preparando um documentário exclusivo que contará toda a história da gravadora 90 PRA TRÊS e os bastidores da criação do álbum <strong>I AM SHIT TRAP</strong>. Fique ligado para acompanhar esse conteúdo incrível que será lançado em breve.</p>
+        <button id="backDocBtn">Voltar</button>
+      `;
+
+      document.getElementById('backDocBtn').addEventListener('click', () => {
+        loadPage('home');
+      });
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      loadPage(link.dataset.page);
+      window.scrollTo(0,0);
+    });
+  });
+
+  loadPage('home');
+</script>
+
+</body>
+</html>
